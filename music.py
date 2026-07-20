@@ -26,7 +26,21 @@ from aiogram.types import (
 )
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from pyrogram import Client
-from pytgcalls.client import GroupCallClient as PyTgCalls
+import pytgcalls
+import sys
+
+# Kutubxona ichidagi mos klassni avtomat qidirish
+PyTgCalls = None
+for attr_name in ["PyTgCalls", "GroupCallClient", "GroupCall", "Client"]:
+    if hasattr(pytgcalls, attr_name):
+        PyTgCalls = getattr(pytgcalls, attr_name)
+        break
+    elif hasattr(getattr(pytgcalls, "client", None), attr_name):
+        PyTgCalls = getattr(pytgcalls.client, attr_name)
+        break
+
+if PyTgCalls is None:
+    raise ImportError("pytgcalls ichidan mos keladigan mijoz klassi topilmadi!")
 from pytgcalls.types import MediaStream, StreamEnded
 from pytgcalls.exceptions import NoActiveGroupCall
 
