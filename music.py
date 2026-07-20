@@ -25,8 +25,7 @@ from aiogram.types import (
     InlineKeyboardMarkup, InlineKeyboardButton,
 )
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from pyrogram import Client
-import pytgcalls
+from pytgcalls import PyTgCallsClient as PyTgCalls
 import sys
 
 # Kutubxona ichidagi mos klassni avtomat qidirish
