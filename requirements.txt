@@ -5,4 +5,5 @@ requests
 python-dotenv
 yt-dlp
 pyrogram==2.0.106
-https://github.com/pytgcalls/pytgcalls/archive/refs/tags/1.0.0.tar.gz
+pytgcalls==3.0.0.dev24
+tgcalls==3.0.0.dev6
