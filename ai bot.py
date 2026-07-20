@@ -221,11 +221,30 @@ async def send_daily_reminder():
 # ==========================================
 # 🚀 ISHGA TUSHIRISH
 # ==========================================
+# Yangi qo'shiladigan aiohttp port qismi
+from aiohttp import web
+import os
+
+async def handle(request):
+    return web.Response(text="Bot muvaffaqiyatli ishlamoqda! 🚀")
+
 async def main():
     scheduler.add_job(send_daily_reminder, "cron", hour=9, minute=0)
     scheduler.start()
 
     print("🤖 Bot muvaffaqiyatli ishga tushdi (Limitsiz AI rejimi)!")
+    
+    # Render portini sozlash
+    port = int(os.environ.get("PORT", 8080))
+    app = web.Application()
+    app.router.add_get("/", handle)
+    
+    runner = web.AppRunner(app)
+    await runner.setup()
+    site = web.TCPSite(runner, "0.0.0.0", port)
+    await site.start()
+    
+    # Botni ishga tushirish
     await dp.start_polling(bot)
 
 
