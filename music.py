@@ -25,7 +25,35 @@ from aiogram.types import (
     InlineKeyboardMarkup, InlineKeyboardButton,
 )
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from pytgcalls import PyTgCallsClient as PyTgCalls
+import pytgcalls
+
+# Kutubxona ichidagi barcha mumkin bo'lgan nomlarni avtomat qidirish va ulash
+PyTgCalls = None
+possible_names = ["PyTgCalls", "GroupCallClient", "PyTgCallsClient", "Client", "GroupCall"]
+
+# Asosiy paket ichidan qidirish
+for name in possible_names:
+    if hasattr(pytgcalls, name):
+        PyTgCalls = getattr(pytgcalls, name)
+        break
+
+# Agar ichki modullarda bo'lsa (client, main va hk)
+if PyTgCalls is None:
+    for sub_mod in ["client", "main", "pytgcalls"]:
+        mod = getattr(pytgcalls, sub_mod, None)
+        if mod:
+            for name in possible_names:
+                if hasattr(mod, name):
+                    PyTgCalls = getattr(mod, name)
+                    break
+            if PyTgCalls:
+                break
+
+# Agar topilsa, kodingiz ishlashi uchun tayyor holatga keltiramiz
+if PyTgCalls is None:
+    # Oxirgi chora: kutubxona tarkibini xatolik matnida chiqarish (muammoni ko'rish uchun)
+    raise ImportError(f"pytgcalls ichidagi barcha ob'ektlar: {dir(pytgcalls)}")
+
 import sys
 
 # Kutubxona ichidagi mos klassni avtomat qidirish
