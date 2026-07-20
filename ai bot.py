@@ -16,7 +16,7 @@ from g4f.client import Client
 # ==========================================
 # ⚙️ SOZLAMALAR VA TOKNLAR
 # ==========================================
-BOT_TOKEN = "8186923406:AAFYezQm-23QVvcX6nI3b1oeQNTPIz_bqrY"
+BOT_TOKEN = "8966672356:AAFL_WUlYQ1t4ZS_yMybtBf4kX3_pLWUJsM"
 REQUIRED_CHANNEL = "@rahmatillayevch"  # Bot kanalda admin bo'lishi shart
 ADMIN_ID = 8004582786
 
