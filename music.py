@@ -28,8 +28,15 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 import pytgcalls
 
 # Kutubxona ichidagi barcha mumkin bo'lgan nomlarni avtomat qidirish va ulash
-PyTgCalls = None
-possible_names = ["PyTgCalls", "GroupCallClient", "PyTgCallsClient", "Client", "GroupCall"]
+import pytgcalls
+from pytgcalls import GroupCallFactory
+
+# Eski kodingiz PyTgCalls deb qidirganda xato bermasligi uchun 
+# GroupCallFactory orqali asosiy klasni ulab qo'yamiz
+class PyTgCalls:
+    def __new__(cls, client, *args, **kwargs):
+        # Factory orqali Pyrogram clientiga mos guruh qo'ng'irog'i ob'ektini yasaydi
+        return GroupCallFactory(client).get_group_call()
 
 # Asosiy paket ichidan qidirish
 for name in possible_names:
