@@ -26,7 +26,7 @@ from aiogram.types import (
 )
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from pyrogram import Client
-from pytgcalls import PyTgCalls
+from pytgcalls.client import GroupCallClient as PyTgCalls
 from pytgcalls.types import MediaStream, StreamEnded
 from pytgcalls.exceptions import NoActiveGroupCall
 
