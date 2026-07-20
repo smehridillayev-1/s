@@ -5,4 +5,4 @@ requests
 python-dotenv
 yt-dlp
 pyrogram==2.0.106
-pytgcalls==3.0.0.dev24
+pytgcalls
